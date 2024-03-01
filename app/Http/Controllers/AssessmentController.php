@@ -403,4 +403,76 @@ class AssessmentController extends Controller
         return view('dashboard.student-list')->with($data);
     }
 
+    //Edit Student
+    public function studentEdit($id)
+    {
+        $student = Student::where('id',$id)->first();
+        $data = compact("student");
+        return view('updateinfo.studentupdate')->with($data);
+    }
+    
+    // Update Student
+    public function studentUpdate($id, Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'ps'=>'required',
+            'cs'=>'required',
+            'parent'=>'required',
+            'parentno'=>'required'
+        ]);
+
+        Student::where('id',$id)->update(['name'=> $request['name']]);
+        Student::where('id',$id)->update(['address'=> $request['address']]);
+        Student::where('id',$id)->update(['cs'=> $request['cs']]);
+        Student::where('id',$id)->update(['ps'=> $request['ps']]);
+        Student::where('id',$id)->update(['parent'=> $request['parent']]);
+        Student::where('id',$id)->update(['parentno'=> $request['parentno']]);
+
+        $student = Student::where('id',$id)->first();
+        $data = compact("student");
+        return view('dashboard.student_dashboard')->with($data);
+    }
+
+    // Teacher Dashboard
+    public function teacherDashboard($id)
+    {
+        $teacher = Teacher::where('id',$id)->first();
+        $data = compact("teacher");
+        return view('dashboard.teacher_dashboard')->with($data);
+    }
+
+    // Teacher Edit
+    public function teacherEdit($id)
+    {
+        $teacher = Teacher::where('id',$id)->first();
+        $data = compact("teacher");
+        return view('updateinfo.teacherupdate')->with($data);
+    }
+
+    // Update Teacher
+    public function teacherUpdate($id, Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'ps'=>'required',
+            'cs'=>'required',
+            'experience'=>'required',
+            'expertise'=>'required'
+        ]);
+
+        Teacher::where('id',$id)->update(['name'=> $request['name']]);
+        Teacher::where('id',$id)->update(['address'=> $request['address']]);
+        Teacher::where('id',$id)->update(['cs'=> $request['cs']]);
+        Teacher::where('id',$id)->update(['ps'=> $request['ps']]);
+        Teacher::where('id',$id)->update(['experience'=> $request['experience']]);
+        Teacher::where('id',$id)->update(['expertise'=> $request['expertise']]);
+        
+        $teacher = Teacher::where('id',$id)->first();
+        $data = compact("teacher");
+        return view('dashboard.teacher_dashboard')->with($data);
+    }
+
 }
