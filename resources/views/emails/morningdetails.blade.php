@@ -22,13 +22,13 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     <tr>
         <th>Name</th>    
         <th>Email</th>
-        <th>Role</th> <!-- Add this line for the "Role" column -->
+        <th>Role</th>
     </tr>
     @foreach ($data as $item)
     <tr>
         <td>{{ $item['name'] }}</td>
         <td>{{ $item['email'] }}</td>
-        <td>{{ $item['role'] }}</td> <!-- Add this line for the "Role" column -->
+        <td>{{ $item['role'] }}</td>
     </tr>
     @endforeach
 </table>
