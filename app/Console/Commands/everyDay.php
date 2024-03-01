@@ -27,9 +27,6 @@ class everyDay extends Command
     /**
      * Execute the console command.
      */
-
-    
-
     
     public function handle()
     {
@@ -38,26 +35,23 @@ class everyDay extends Command
         foreach($adminsMail as $mail){
             $emails[] = $mail['email'];
         }
-      
 
-        // $data = [["email"=>"test1@gmail.com"],["email"=>"test2@gmail.com"],["email"=>"test3@gmail.com"]];
+    // $data = [["email"=>"test1@gmail.com"],["email"=>"test2@gmail.com"],["email"=>"test3@gmail.com"]];
 
-        $teachers = Approval::all();
-        $students = ApprovalStudent::all();
+    $teachers = Approval::all();
+    $students = ApprovalStudent::all();
 
-        $data = [];
-        // Format and append teacher data
-foreach ($teachers as $teacher) {
-    $data[] = ["name" => $teacher->name, "email" => $teacher->email, "role" => "teacher"];
-}
+    $data = [];
+    foreach ($teachers as $teacher) {
+        $data[] = ["name" => $teacher->name, "email" => $teacher->email, "role" => "teacher"];
+    }
 
-// Format and append student data
-foreach ($students as $student) {
-    $data[] = ["name" => $student->name, "email" => $student->email, "role" => "student"];
-}
+    foreach ($students as $student) {
+        $data[] = ["name" => $student->name, "email" => $student->email, "role" => "student"];
+    }
 
-        Mail::send('emails.morningdetails', ['data'=>$data],function($message) use($emails){
-            $message->to($emails)->subject('Following Approvals are left for verification');
+    Mail::send('emails.morningdetails', ['data'=>$data],function($message) use($emails){
+    $message->to($emails)->subject('Following Approvals are left for verification');
         });
     }
 }
