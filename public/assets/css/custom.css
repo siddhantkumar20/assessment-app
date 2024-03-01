@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #1d4bca;
+}
+
+.two-button{
+    height: 100vh;
+    width: 100%;
+    background-color: #1d4bca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn1{
+    font-size: 28px;
+    font-weight: 600;
+    padding: 20px;
+    margin: 30px;
+    width: 350px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: #000000;
+}
+
+.btn1:hover{
+    background-color: rgba(255, 255, 255, 0.781);
+    color: #000000;
+}
+
+    .box1-admin-login{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    width:100%;
+    max-width: 430px;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    max-height: 450px;
+    margin-top:20px;
+    }
+
+    .box-primary{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+    
+        .box1-admin-reg{
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 7px;
+        width:100%;
+        max-width: 430px;
+        padding: 30px;
+        background-color: rgb(255, 255, 255);
+        flex-direction: column;
+        max-height: 650px;
+        }
+    
+
+
+    header{
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    }
+
+    .form-group{
+    margin: 10px;
+    }
+
+    h6{
+        font-weight: 600;
+        }
+    
+        .regi{
+        text-decoration: none;
+        }
+
+        .box-primary-a-dash{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            }
+        
+            .box1-a-dash{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            width:100%;
+            max-width: 430px;
+            padding: 30px;
+            background-color: rgb(255, 255, 255);
+            flex-direction: column;
+            max-height: 470px;
+            }
+
+            .box1-s-reg{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 7px;
+                width:100%;
+                max-width: 430px;
+                padding: 30px;
+                background-color: rgb(255, 255, 255);
+                flex-direction: column; 
+            }
+
+            .box1-admin-home{
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 7px;
+                max-width: 430px;
+                padding: 30px;
+                background-color: rgb(255, 255, 255);
+                flex-direction: column;
+                max-height: 470px;
+                }
+
+                .box1-approval-home{
+                  
+                    height: 100vh;
+                    width: 80%;
+                    display: flex;
+                    border-radius: 7px;
+                    align-items: center;
+                    padding: 30px;
+                    background-color: rgb(255, 255, 255);
+                    flex-direction: column;
+                    min-height: 100px;
+                    }
+                
+                    table {
+                        width: 100%;
+                      }
+
+                      th,td {
+                        text-align: center;
+                      }
+                      th {
+                        background-color: #04AA6D;
+                        color: white;
+                      }
+
+                      tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr{
+    height: 40px;
+}
