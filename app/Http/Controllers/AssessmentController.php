@@ -64,7 +64,7 @@ class AssessmentController extends Controller
     {
         $request->validate([
             'email'=>'required|email',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $admin = Admin::where('email','=',$request->email)->first();
@@ -93,7 +93,7 @@ class AssessmentController extends Controller
         $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:admins',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $admin = new Admin();
@@ -123,7 +123,7 @@ class AssessmentController extends Controller
     {
         $request->validate([
             'email'=>'required|email',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $student = Student::where('email','=',$request->email)->first();
@@ -167,7 +167,7 @@ class AssessmentController extends Controller
             'cs'=>'required',
             'parent'=>'required',
             'parentno'=>'required',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $student = new ApprovalStudent();
@@ -196,7 +196,7 @@ class AssessmentController extends Controller
     {
         $request->validate([
             'email'=>'required|email',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $teacher = Teacher::where('email','=',$request->email)->first();
@@ -233,7 +233,7 @@ class AssessmentController extends Controller
             'cs'=>'required',
             'experience'=>'required',
             'expertise'=>'required',
-            'password'=>'required|min:6|max:12'
+            'password'=>'required|min:6'
         ]);
 
         $teacher = new Approval();
