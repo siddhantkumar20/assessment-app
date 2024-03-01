@@ -17,8 +17,6 @@
 
      
 <div class="col-md-4 col-md-offset-4 box1-admin-login">
-
-
         
         <header>Name: {{$approval->name}}</header>
         <p>Email: {{$approval->email}}</p>

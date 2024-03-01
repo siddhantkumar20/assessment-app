@@ -145,6 +145,16 @@ class AssessmentController extends Controller
         }
     }
 
+    // Student Dashboard
+    public function studentDashboard($id)
+    {
+        $student = Student::where('id',$id)->first();
+        $data = compact("student");
+        return view('dashboard.student_dashboard')->with($data);
+    }
+    
+
+
     // Student Registration
     public function registerStudent(Request $request)
     {
@@ -208,6 +218,8 @@ class AssessmentController extends Controller
             }
         }
     }
+
+
 
     // Teacher Registration
     public function registerTeacher(Request $request)
@@ -285,7 +297,7 @@ class AssessmentController extends Controller
     $newStudent->parent = $studentDetails->parent;
     $newStudent->parentno = $studentDetails->parentno;
     $newStudent->password = $studentDetails->password;
-    $newStudent->teacher = "({$teacher->id}) T{$teacher->name}";
+    $newStudent->teacher = "({$teacher->id})T {$teacher->name}";
     $newStudent->save();
     
     //Send Mail of Approval
