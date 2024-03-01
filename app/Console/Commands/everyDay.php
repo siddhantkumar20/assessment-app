@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Admin;
+use App\Models\Approval;
+use App\Models\ApprovalStudent;
 use Mail;
 
 class everyDay extends Command
@@ -25,6 +27,10 @@ class everyDay extends Command
     /**
      * Execute the console command.
      */
+
+    
+
+    
     public function handle()
     {
         $adminsMail = Admin::select('email')->get();
@@ -32,8 +38,23 @@ class everyDay extends Command
         foreach($adminsMail as $mail){
             $emails[] = $mail['email'];
         }
+      
 
-        Mail::send('emails.morningdetails', [],function($message) use($emails){
+        // $data = [["email"=>"test1@gmail.com"],["email"=>"test2@gmail.com"],["email"=>"test3@gmail.com"]];
+
+        $teachers = Approval::select('email')->get();
+        $students = ApprovalStudent::select('email')->get();
+
+        $data = [];
+        foreach ($teachers as $teacher) {
+            $data[] = ["email" => $teacher->email];
+        }
+
+        foreach ($students as $student) {
+            $data[] = ["email" => $student->email];
+        }
+
+        Mail::send('emails.morningdetails', ['data'=>$data],function($message) use($emails){
             $message->to($emails)->subject('Following Approvals are left for verification');
         });
     }
