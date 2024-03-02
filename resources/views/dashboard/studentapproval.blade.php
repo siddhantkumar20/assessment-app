@@ -17,10 +17,17 @@
 <div class="container" style="margin-top: 10px;">
         <div class="row box-primary">
             <div class="col-md-4 col-md-offset-4 box1-approval-home" style="margin-top:20px;">
-            <a href="/admin-dashboard/{{$admin->id}}">
+            <a href="/admin-dashboard">
             <button class="btn btn-primary">Home Dashboard</button>
         </a>
             <div>
+
+            @if(Session::has('success'))
+                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
                 
 <header>Student Approval List</header>
 </div>    
@@ -39,7 +46,7 @@
                     <td>{{$approvalstudent->name}}</td>
                     <td>{{$approvalstudent->email}}</td>
                     <td>
-                    <a href="{{route('view-student',['id' => $admin->id,'s_id'=> $approvalstudent->id])}}">
+                    <a href="{{route('view-student',['s_id'=> $approvalstudent->id])}}">
                         <button class="btn btn-primary">View</button>
                     </a>
 </td>

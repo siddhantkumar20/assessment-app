@@ -29,14 +29,14 @@
 
   <div class="d-flex">
     <div style="margin-right: 10px;">
-                    <form action="{{route('approve-teacher',['id'=>$approval->id , 'a_id'=>$admin->id])}}" method="post">
+                    <form action="{{route('approve-teacher',['id'=>$approval->id])}}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-warning">Approve</button>
                     </form>
                     </div>
                     
                     <div>
-                    <form action="{{route('reject-teacher',['id'=>$approval->id , 'a_id'=>$admin->id])}}" method="post">
+                    <form action="{{route('reject-teacher',['id'=>$approval->id])}}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-danger">Reject</button>
                     </form>

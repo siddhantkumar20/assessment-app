@@ -23,7 +23,7 @@
 
             <div class="d-flex">
     <div style="margin-right: 10px;">
-                    <form action="{{route('approve-student',['id'=>$approvalstudent->id, 'a_id'=>$admin->id])}}" method="post">
+                    <form action="{{route('approve-student',['id'=>$approvalstudent->id])}}" method="post">
                     @csrf
                     <select name="id">
                     @foreach($approval as $teacher)
@@ -38,7 +38,7 @@
                </form>
                </div>
                <div>
-                    <form action="{{route('reject-student',['id'=>$approvalstudent->id , 'a_id'=>$admin->id])}}" method="post">
+                    <form action="{{route('reject-student',['id'=>$approvalstudent->id])}}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-danger">Reject</button>
                     </form>

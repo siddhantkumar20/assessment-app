@@ -16,7 +16,7 @@
             <header>Student Updation Page</header>
 
                 <hr>
-                <form action="{{route('update-student',['id'=>$student->id])}}" method="post"  enctype="multipart/form-data">
+                <form action="{{route('update-student')}}" method="post"  enctype="multipart/form-data">
                     @if(Session::has('success'))
                     <div class="alert alert-success">{{Session::get('success')}}</div>
                     @endif

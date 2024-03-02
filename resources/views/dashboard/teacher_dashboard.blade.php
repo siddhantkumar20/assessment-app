@@ -13,8 +13,8 @@
 <div class="container" style="margin-top:10px">
         <div class="row box-primary">
             <div class="col-md-4 col-md-offset-4 box1-std-dash">
-            <a href="/">
-                <button class="btn btn-success">Go to Home</button>
+            <a href="/logout-teacher">
+                <button class="btn btn-success">Logout</button>
                 </a>
             <h2>Welcome {{$teacher->name}}</h2>
         
@@ -29,7 +29,7 @@
             <p>Teacher Experience: {{$teacher->experience}}</p>
             <p>Teacher Expertise: {{$teacher->expertise}}</p>
 
-        <a href="{{route('teacher-edit',['id'=>$teacher->id])}}">
+        <a href="{{route('teacher-edit')}}">
             <button class="btn btn-primary">Edit</button>
         </a>
     </div>

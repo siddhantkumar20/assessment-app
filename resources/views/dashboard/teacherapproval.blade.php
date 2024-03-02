@@ -15,10 +15,18 @@
         <div class="row box-primary">
        
         <div class="col-md-4 col-md-offset-4 box1-approval-home" style="margin-top:20px;">
-        <a href="/admin-dashboard/{{$admin->id}}">
+        <a href="/admin-dashboard">
             <button class="btn btn-primary">Home Dashboard</button>
         </a>
         <div>
+
+        @if(Session::has('success'))
+                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
+                    
 <header>Teacher Approval List</header>
 </div>
         <table>
@@ -36,7 +44,7 @@
                     <td>{{$approvals->name}}</td>
                     <td>{{$approvals->email}}</td>
                     <td>
-                    <a href="{{route('view-teacher',['id' => $admin->id,'t_id'=> $approvals->id])}}">
+                    <a href="{{route('view-teacher',['t_id'=> $approvals->id])}}">
                         <button class="btn btn-primary">View</button>
                     </a>
                     </td>

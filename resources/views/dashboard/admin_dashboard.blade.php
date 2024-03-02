@@ -13,23 +13,24 @@
     <div class="container">
         <div class="row box-primary">
             <div class="col-md-4 col-md-offset-4 box1-admin-home" style="margin-top:20px;">
-            <a href="/">
-                <button class="btn btn-success">Go to Home</button>
+            <a href="/logout-admin">
+                <button class="btn btn-success">Logout</button>
                 </a>
             <header>Welcome {{$admin->name}}</header>
         <hr>
 
+        <!-- Student's Approval -->
+        <a href="{{route('studentapproval') }}">
+            <button class="btn btn-success">Student's Approval</button>
+        </a>
+        <hr>
+
         <!-- Teacher's Approval -->
-        <a href="{{route('teacherapproval',['id' => $admin->id]) }}">
+        <a href="{{route('teacherapproval' ) }}">
             <button class="btn btn-success">Teacher's Approval</button>
         </a>
         <hr>
 
-        <!-- Student's Approval -->
-        <a href="{{route('studentapproval',['id' => $admin->id]) }}">
-            <button class="btn btn-success">Student's Approval</button>
-        </a>
-        <hr>
 
         <!-- Teacher's List -->
         <!-- <a href="{{route('teacherlist',['id' => $admin->id]) }}">
@@ -44,13 +45,19 @@
         <hr> -->
 
         <!-- Notifications -->
-        <!-- <a href="#">
+        <a href="#">
             <button class="btn btn-success">Notifications</button>
         </a>
-        <hr> -->
+        <hr>
 
             </div>
         </div>
+<!--     
+        <h3>Notifications:</h3>
+        @foreach($admin->notifications as $notification)
+            <p>{{ $notification->data['user_name'] }} has registered.</p>
+        @endforeach -->
+    
     </div>
 </body>
 </html>

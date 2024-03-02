@@ -13,8 +13,8 @@
 <div class="container" style="margin-top:10px">
         <div class="row box-primary">
             <div class="col-md-4 col-md-offset-4 box1-std-dash">
-            <a href="/">
-                <button class="btn btn-success">Go to Home</button>
+            <a href="/logout-student">
+                <button class="btn btn-success">Logout</button>
                 </a>
             <h2>Welcome {{$student->name}}</h2>
         
@@ -30,7 +30,7 @@
             <p>Parent's Phone: {{$student->parentno}}</p>
             <p>Assigned Teacher: {{$student->teacher}}</p> 
  
-            <a href="{{route('student-edit',['id'=>$student->id])}}">
+            <a href="{{route('student-edit')}}">
                 <button class="btn btn-primary">Edit</button>
             </a>
 
@@ -38,6 +38,6 @@
         </div>
 </div>
 </div>
-    </div>
+</div>
 </body>
 </html>
