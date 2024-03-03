@@ -54,7 +54,7 @@ Route::post('/register-admin',[AssessmentController::class, 'registerAdmin'])->n
 //********************** Admin Access End *******************
 
 
-// ******************* Teacher Access End **********************
+// ******************* Teacher Access **********************
 
 // Teacher Login/Logout
 Route::post('/login-teacher',[AssessmentController::class, 'loginTeacher'])->name('login-teacher');
