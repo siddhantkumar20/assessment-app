@@ -26,32 +26,44 @@
                     @if(Session::has('fail'))
                     <div class="alert alert-danger">{{Session::get('fail')}}</div>
                     @endif
-                    
-<header>Teacher Approval List</header>
-</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>View</th>
-                </tr>
-            </thead>
 
-            <tbody>
-            @foreach($approval as $approvals)
-                <tr>
-                    <td>{{$approvals->name}}</td>
-                    <td>{{$approvals->email}}</td>
-                    <td>
-                    <a href="{{route('view-teacher',['t_id'=> $approvals->id])}}">
-                        <button class="btn btn-primary">View</button>
-                    </a>
-                    </td>
-                </tr>            
-                @endforeach
-            </tbody>
-        </table>
+        <header style="margin: 10px;">Teacher Approval List</header>
+            </div>
+        
+                <table style="margin: 10px;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    @if(count($approval) > 0)
+                        @foreach($approval as $approvals)
+                        <tr>
+                            <td>{{$approvals->name}}</td>
+                            <td>{{$approvals->email}}</td>
+                            <td>
+                                <a href="{{route('view-teacher',['t_id'=> $approvals->id])}}">
+                                    <button class="btn btn-primary">View</button>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan="3">
+                                <h3 style="margin-top: 10px;">No Approvals</h3>
+                            </td>
+                        </tr>
+
+                    @endif
+                    </tbody>
+                    
+                </table>
+                
 </div>
 </div>
 </div>

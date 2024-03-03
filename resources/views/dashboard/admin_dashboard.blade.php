@@ -32,19 +32,13 @@
         <hr>
 
         <!-- Notifications -->
-        <a href="#">
+        <!-- <a href="{{route('adminnotification')}}">
             <button class="btn btn-success">Notifications</button>
         </a>
-        <hr>
+        <hr> -->
 
             </div>
         </div>
-<!--     
-        <h3>Notifications:</h3>
-        @foreach($admin->notifications as $notification)
-            <p>{{ $notification->data['user_name'] }} has registered.</p>
-        @endforeach -->
-    
     </div>
 </body>
 </html>

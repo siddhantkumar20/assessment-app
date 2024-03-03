@@ -1,4 +1,4 @@
-<!-- Teacher's Approval list -->
+<!-- Teacher's View Page -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,24 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
     <title>Teacher</title>
-
 </head>
 
 <body>
 <div class="container">
-        <div class="row box-primary">
-
-     
+<div class="row box-primary">
 <div class="col-md-4 col-md-offset-4 box1-admin-login">
         
-        <header>Name: {{$approval->name}}</header>
-        <p>Email: {{$approval->email}}</p>
-        <p>Address: {{$approval->address}}</p>
-        <p>Current School: {{$approval->cs}}</p>
-        <p>Previous School: {{$approval->ps}}</p>
-        <p>Experience: {{$approval->experience}}</p>
-        <p>Expertise: {{$approval->expertise}}</p>
-
+<img src="{{asset($approval->image)}}" style="width:120px; height:120px; border-radius: 50%; border: 2px solid black;" alt="">
+        <header style="margin-top: 10px; margin-bottom:10px;">{{$approval->name}}</header>
+        <p><b>Email:</b> {{$approval->email}}</p>
+        <p><b>Address:</b> {{$approval->address}}</p>
+        <p><b>Current School:</b> {{$approval->cs}}</p>
+        <p><b>Previous School:</b> {{$approval->ps}}</p>  
+        <p><b>Experience:</b> {{$approval->experience}}</p>
+        <p><b>Expertise:</b> {{$approval->expertise}}</p>
 
   <div class="d-flex">
     <div style="margin-right: 10px;">

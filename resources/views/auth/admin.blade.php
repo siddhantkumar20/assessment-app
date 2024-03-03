@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row box-primary">
-            <div class="col-md-4 col-md-offset-4 box1-admin-login">
+            <div class="col-md-4 col-md-offset-4 box1-s-reg" style="margin-top:20px;">
             <div class="d-flex col-xs col-lg-4 col-sm-6 justify-content-center">
                 <a href="/">
                 <button class="btn btn-success">Go to Home</button>

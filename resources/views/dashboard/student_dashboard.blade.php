@@ -10,30 +10,53 @@
     <title>{{$student->name}}</title>
 </head>
 <body>
-<div class="container" style="margin-top:10px">
-        <div class="row box-primary">
-            <div class="col-md-4 col-md-offset-4 box1-std-dash">
-            <a href="/logout-student">
-                <button class="btn btn-success">Logout</button>
-                </a>
-            <h2>Welcome {{$student->name}}</h2>
-        
-        <h3>Your Information</h3>
+<div class="container" style="margin-top:10px; padding: 10px;">
+        <div class="row box-primary" style="padding: 10px;">
+            <div class="col-md-4 col-md-offset-4 profile" >
 
-            <p>Student Id: Std{{$student->id}}</p>
-            <p>Student Name: {{$student->name}}</p>
-            <p>Student Email: {{$student->email}}</p>
-            <p>Student Address: {{$student->address}}</p>
-            <p>Current School: {{$student->cs}}</p>
-            <p>Previous School: {{$student->ps}}</p>
-            <p>Parent's Name: {{$student->parent}}</p>
-            <p>Parent's Phone: {{$student->parentno}}</p>
-            <p>Assigned Teacher: {{$student->teacher}}</p> 
- 
+                <div class="row" style="margin-top: 10px;">
+                
+                <div class="col-lg-9" style="display:flex; align-items: center;">
+                <img src="{{asset($student->image)}}" style="width:120px; height:120px; border-radius: 50%; border: 2px solid black; margin-right: 10px;" alt="">  
+
+                <header>{{$student->name}}</header>
+                </div>
+
+                <div class="col-lg-3" style="padding-left: 100px;">
+            <a href="/logout-student">
+                <button class="btn btn-danger">Logout</button>
+                </a>
+                
+                </div>
+            </div>    
+            <hr>
+            
+        
+            <header style="font-size: 25px; margin-bottom: 40px;">Your Information</header>
+        <div class="row">
+            <div class="col-lg-6">
+            <p><b>Student Id:</b> Std {{$student->id}}</p>
+            <p><b>Student Name:</b> {{$student->name}}</p>
+            <p><b>Student Email:</b> {{$student->email}}</p>
+            <p><b>Student Address:</b> {{$student->address}}</p>
+            </div>
+
+            <div class="col-lg-6">
+            <p><b>Current School:</b> {{$student->cs}}</p>
+            <p><b>Previous School:</b> {{$student->ps}}</p>
+            <p><b>Parent's Name:</b> {{$student->parent}}</p>
+            <p><b>Parent's Phone:</b> {{$student->parentno}}</p>
+            <p><b>Assigned Teacher:</b>{{$student->teacher}}</p> 
+            </div>
+            <hr>
+            <div class="col-lg-12 d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
             <a href="{{route('student-edit')}}">
                 <button class="btn btn-primary">Edit</button>
             </a>
+            </div>
+            </div>
 
+            
             </div>
         </div>
 </div>

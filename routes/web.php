@@ -34,8 +34,7 @@ Route::get('/logout-admin', [AssessmentController::class, 'logoutAdmin'])->name(
 //Admin Home Dashboard Buttons
 Route::get('/studentapproval',[AssessmentController::class, 'studentapproval'])->name('studentapproval')->middleware('adminkey');
 Route::get('/teacherapproval',[AssessmentController::class, 'teacherapproval'])->name('teacherapproval')->middleware('adminkey');
-Route::get('/teacherlist/{id}',[AssessmentController::class, 'teacherlist'])->name('teacherlist')->middleware('adminkey');
-Route::get('/studentlist/{id}',[AssessmentController::class, 'studentlist'])->name('studentlist')->middleware('adminkey');
+Route::get('/adminnotification',[AssessmentController::class, 'adminNotification'])->name('adminnotification')->middleware('adminkey');
 
 //Route to view
 Route::get('/view-student/{s_id}', [AssessmentController::class, 'viewStudent'])->name('view-student')->middleware('adminkey');

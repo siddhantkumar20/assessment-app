@@ -41,6 +41,7 @@
             </thead>
 
             <tbody>
+            @if(count($approval) > 0)
             @foreach($approval as $approvalstudent)
                 <tr>
                     <td>{{$approvalstudent->name}}</td>
@@ -54,6 +55,14 @@
                 </tr>
             
                 @endforeach
+                @else
+                        <tr>
+                            <td colspan="3">
+                                <h3 style="margin-top: 10px;">No Approvals</h3>
+                            </td>
+                        </tr>
+
+                    @endif
             </tbody>
         </table>
         </div>

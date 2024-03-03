@@ -7,16 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewApproval extends Notification
+class NewStudent extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+
+    public function __construct($student)
     {
-        //
+        $this->student = $student;
     }
 
     /**
@@ -40,7 +41,6 @@ class NewApproval extends Notification
                     ->line('Thank you for using our application!');
     }
 
-    public $name;
     /**
      * Get the array representation of the notification.
      *
@@ -49,9 +49,7 @@ class NewApproval extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'A new user has registered.',
-            'user_id' => $notifiable->id,
-            'user_name' => $notifiable->name,
+            'user_name'=>$this->student->name,
         ];
     }
 }

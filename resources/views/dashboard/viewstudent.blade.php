@@ -12,19 +12,21 @@
 <div class="container">
         <div class="row box-primary">
             <div class="col-md-4 col-md-offset-4 box1-admin-login">
-        
-            <header>Name: {{$approvalstudent->name}}</header>
-        <p>Email: {{$approvalstudent->email}}</p>
-        <p>Address: {{$approvalstudent->address}}</p>
-        <p>Current School: {{$approvalstudent->cs}}</p>
-        <p>Previous School: {{$approvalstudent->ps}}</p>
-        <p>Parent: {{$approvalstudent->parent}}</p>
-        <p>Parent No.: {{$approvalstudent->parentno}}</p>
+            <img src="{{asset($approvalstudent->image)}}" style="width:120px; height:120px; border-radius: 50%; border: 2px solid black;" alt="">        
+            <header  style="margin-top: 10px; margin-bottom:10px;">{{$approvalstudent->name}}</header>
+        <p><b>Email:</b> {{$approvalstudent->email}}</p>
+        <p><b>Address:</b> {{$approvalstudent->address}}</p>
+        <p><b>Current School:</b> {{$approvalstudent->cs}}</p>
+        <p><b>Previous School:</b> {{$approvalstudent->ps}}</p>
+        <p><b>Parent:</b> {{$approvalstudent->parent}}</p>
+        <p><b>Parent No.:</b> {{$approvalstudent->parentno}}</p>
 
-            <div class="d-flex">
-    <div style="margin-right: 10px;">
+            <div class="d-flex justify-content-center align-items-center">
+                <div style="margin-right: 10px;">  
                     <form action="{{route('approve-student',['id'=>$approvalstudent->id])}}" method="post">
                     @csrf
+                    <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                    <label for="id"><b>Select Teacher:</b></label>
                     <select name="id">
                     @foreach($approval as $teacher)
                     <option value="{{ $teacher->id}}">
@@ -32,21 +34,20 @@
                     </option>
                     @endforeach
                     </select>
-                    
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
                     <button type="submit" class="btn btn-warning">Approve</button>
-     
-               </form>
-               </div>
-               <div>
+                    </div>        
+                </form>
+                        </div>
+                    </div>
+                    
+                    <div>
                     <form action="{{route('reject-student',['id'=>$approvalstudent->id])}}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-danger">Reject</button>
                     </form>
                     </div>
-                    </div>
-</tbody>
-</table>
-
 </div>
 </div>
 </body>

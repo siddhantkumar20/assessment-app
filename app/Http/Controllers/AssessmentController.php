@@ -13,8 +13,9 @@ use App\Mail\ApprovedStudent;
 use App\Mail\RejectedStudent;
 use App\Mail\ApprovedTeacher;
 use App\Mail\RejectedTeacher;
+use Illuminate\Support\Facades\Notification;
 
-use App\Notifications\NewApproval;
+use App\Notifications\NewStudent;
 
 use Mail;
 use md5;
@@ -114,6 +115,14 @@ class AssessmentController extends Controller
             return redirect('admin');
     }
     
+    // Buttons - Notifications
+    public function adminNotification()
+    {
+        $admin = session('admin');
+        $admindata = compact("admin");
+        return view('dashboard.admin_notify')->with($admindata);
+    }
+
     // Buttons - Student Approvals
     public function studentapproval()
     {
@@ -148,12 +157,13 @@ class AssessmentController extends Controller
             $newStudent->name = $studentDetails->name;
             $newStudent->email = $studentDetails->email;
             $newStudent->address = $studentDetails->address;
+            $newStudent->image = $studentDetails->image;
             $newStudent->cs = $studentDetails->cs;
             $newStudent->ps = $studentDetails->ps;
             $newStudent->parent = $studentDetails->parent;
             $newStudent->parentno = $studentDetails->parentno;
             $newStudent->password = $studentDetails->password;
-            $newStudent->teacher = "({$teacher->id})T {$teacher->name}";
+            $newStudent->teacher = "T{$teacher->id} {$teacher->name}";
             
             try {
                 Mail::to($studentDetails->email)->send(new ApprovedStudent());
@@ -208,6 +218,7 @@ class AssessmentController extends Controller
             $newTeacher->name = $teacherDetails->name;
             $newTeacher->email = $teacherDetails->email;
             $newTeacher->address = $teacherDetails->address;
+            $newTeacher->image = $teacherDetails->image;
             $newTeacher->cs = $teacherDetails->cs;
             $newTeacher->ps = $teacherDetails->ps;
             $newTeacher->experience = $teacherDetails->experience;
@@ -352,7 +363,7 @@ class AssessmentController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:admins|unique:approvals|unique:teachers|unique:approval_students|unique:students',
             'address'=>'required',
-            'image'=>'required',
+            'image'=>'required|mimes:png,jpg,jpeg,webp',
             'ps'=>'required',
             'cs'=>'required',
             'experience'=>'required',
@@ -364,7 +375,14 @@ class AssessmentController extends Controller
         $teacher->name = $request['name'];
         $teacher->email = $request['email'];
         $teacher->address = $request['address'];
-        $teacher->image = $request['image'];
+
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $path = 'uploads/category/';
+        $file->move($path,$filename);
+        $teacher->image = $path.$filename;
+        
         $teacher->ps = $request['ps'];
         $teacher->cs = $request['cs'];
         $teacher->experience = $request['experience'];
@@ -466,7 +484,7 @@ class AssessmentController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:admins|unique:approvals|unique:teachers|unique:approval_students|unique:students',
             'address'=>'required',
-            'image'=>'required',
+            'image'=>'required|mimes:png,jpg,jpeg,webp',
             'ps'=>'required',
             'cs'=>'required',
             'parent'=>'required',
@@ -478,7 +496,14 @@ class AssessmentController extends Controller
         $student->name = $request['name'];
         $student->email = $request['email'];
         $student->address = $request['address'];
-        $student->image = $request['image'];
+
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $path = 'uploads/category/';
+        $file->move($path,$filename);
+        $student->image = $path.$filename;
+
         $student->cs = $request['cs'];
         $student->ps = $request['ps'];
         $student->parent = $request['parent'];
@@ -486,13 +511,9 @@ class AssessmentController extends Controller
         $student->password = md5($request['password']);
         $res = $student->save();
 
-        // Notification------------------------
-        // $admins = Admin::all();
 
-        // foreach ($admins as $admin) {
-        //     $admin->notify(new NewApproval($student));
-        // }
-        //-------------------------------------
+        $admin = Admin::all();
+        Notification::send($admin, new NewStudent($student));
 
         if($res){  
             return back()->with('success', 'Sent for Approval, you will soon recieve mail');
