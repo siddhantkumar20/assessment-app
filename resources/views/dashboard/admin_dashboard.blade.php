@@ -31,19 +31,6 @@
         </a>
         <hr>
 
-
-        <!-- Teacher's List -->
-        <!-- <a href="{{route('teacherlist',['id' => $admin->id]) }}">
-            <button class="btn btn-success">Teacher's List</button>
-        </a>
-        <hr> -->
-
-        <!-- Student's List -->
-        <!-- <a href="{{route('studentlist',['id' => $admin->id]) }}">
-            <button class="btn btn-success">Student's List</button>
-        </a>
-        <hr> -->
-
         <!-- Notifications -->
         <a href="#">
             <button class="btn btn-success">Notifications</button>

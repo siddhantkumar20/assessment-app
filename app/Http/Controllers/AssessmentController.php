@@ -64,6 +64,12 @@ class AssessmentController extends Controller
         return view("auth.studentregister");
     }
 
+    // Error Page
+    public function noAccess()
+    {
+        return view("errorhere");
+    }
+
 // ************************** Admin *********************************
 
     // Admin Login Functionality
@@ -96,70 +102,41 @@ class AssessmentController extends Controller
     // Admin Dashboard
     public function adminDashboard()
     {
-        if(session()->has('admin')){
             $admin = session('admin');
             $data = compact("admin");
             return view('dashboard.admin_dashboard')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Admin Logout Functionality
     public function logoutAdmin()
     {
-        if(session()->has('admin'))
-        {
             session()->pull('admin');
             return redirect('admin');
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
     
     // Buttons - Student Approvals
     public function studentapproval()
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $approval = ApprovalStudent::all();
             $teachers = Teacher::all();
             $data = compact('admin','approval','teachers');
             return view('dashboard.studentapproval')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // View - Students Approvals
     public function viewStudent($s_id)
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $approvalstudent = ApprovalStudent::where('id',$s_id)->first();
             $approval = Teacher::all();
             $data = compact('admin','approvalstudent','approval');
-            return view('dashboard.viewstudent')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }        
+            return view('dashboard.viewstudent')->with($data);        
     }
 
     // Approve - Student
     public function approveStudent($id, Request $request)
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $request->validate([
             'id' => 'required',
@@ -187,18 +164,11 @@ class AssessmentController extends Controller
                 ApprovalStudent::where('id',$id)->delete();
                 return redirect("studentapproval")->with('fail', 'Mail was not sent!!');
             }
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Reject - Student
     public function rejectStudent($id, Request $request)
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $studentDetails = ApprovalStudent::where('id',$id)->first();
         
@@ -210,50 +180,29 @@ class AssessmentController extends Controller
                 ApprovalStudent::where('id',$id)->delete();
                 return redirect("studentapproval")->with('fail', 'Mail was not sent!!');
             }
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Buttons - Teacher Approvals
     public function teacherapproval()
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $approval = Approval::all();
             $data = compact('admin','approval');
             return view('dashboard.teacherapproval')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // View - Teachers Approvals
     public function viewTeacher($t_id)
     {
-        if(session()->has('admin'))
-        {
             $admin = session('admin');
             $approval = Approval::where('id',$t_id)->first();
             $data = compact('admin','approval');
-            return view('dashboard.viewteacher')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }        
+            return view('dashboard.viewteacher')->with($data);  
     }
 
     // Approve - Teacher
     public function approveTeacher($id, Request $request)
     {
-        if(session()->has('admin'))
-            {
             $teacherDetails = Approval::where('id',$id)->first();
             $newTeacher = new Teacher();
             $newTeacher->name = $teacherDetails->name;
@@ -274,18 +223,11 @@ class AssessmentController extends Controller
                 Approval::where('id',$id)->delete();
                 return redirect("teacherapproval")->with('fail', 'Mail was not sent!!');
             }
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Reject - Teacher
     public function rejectTeacher($id, Request $request)
     {
-        if(session()->has('admin'))
-        {
             $teacherDetails = Approval::where('id',$id)->first();
             try {
                 Mail::to($teacherDetails->email)->send(new RejectedTeacher());
@@ -295,11 +237,6 @@ class AssessmentController extends Controller
                 Approval::where('id',$id)->delete();
                 return redirect("teacherapproval")->with('fail', 'Mail was not sent!!');
             }
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Admin Registration Functionality
@@ -362,48 +299,30 @@ class AssessmentController extends Controller
     // Teacher Dashboard
     public function teacherDashboard()
     {
-        if(session()->has('teacher')){
             $teacher = session('teacher');
             $data = compact("teacher");
             return view('dashboard.teacher_dashboard')->with($data);
-            }
-            else
-            {
-                return view('errorhere');
-            }
     }
 
     // Teacher Logout Functionality
     public function logoutTeacher()
     {
-        if(session()->has('teacher'))
-        {
-            session()->pull('teacher');
-        }
+        session()->pull('teacher');
         return redirect('teacherlogin');
     }
 
     // Teacher Edit
     public function teacherEdit()
     {
-        if(session()->has('teacher'))
-        {
             $teacher = session('teacher');
             $data = compact("teacher");
             return view('updateinfo.teacherupdate')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
-    }
+     }
 
     // Update Teacher
     public function teacherUpdate(Request $request)
     {
-        if(session()->has('teacher')){
-
-        $request->validate([
+           $request->validate([
             'name'=>'required',
             'address'=>'required',
             'ps'=>'required',
@@ -424,11 +343,6 @@ class AssessmentController extends Controller
 
         $data = compact("teacher");
         return view('dashboard.teacher_dashboard')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Teacher Registration Functionality
@@ -501,46 +415,29 @@ class AssessmentController extends Controller
     // Student Dashboard
     public function studentDashboard()
     {
-        if(session()->has('student')){
             $student = session('student');
             $data = compact("student");
             return view('dashboard.student_dashboard')->with($data);
-            }
-            else
-            {
-                return view('errorhere');
-            }
     }
     
     // Student Logout Functionality
     public function logoutStudent()
     {
-        if(session()->has('student'))
-        {
             session()->pull('student');
-        }
-        return redirect('studentlogin');
+            return redirect('studentlogin');
     }
 
     //Edit Student
     public function studentEdit()
     {
-        if(session()->has('student'))
-        {
             $student = session('student');
             $data = compact("student");
             return view('updateinfo.studentupdate')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
     
     // Update Student
     public function studentUpdate(Request $request)
     {            
-    if(session()->has('student')){
         $request->validate([
             'name'=>'required',
             'address'=>'required',
@@ -560,11 +457,6 @@ class AssessmentController extends Controller
         $student->save();
         $data = compact("student");
         return view('dashboard.student_dashboard')->with($data);
-        }
-        else
-        {
-            return view('errorhere');
-        }
     }
 
     // Student Registration Functionality
@@ -609,26 +501,4 @@ class AssessmentController extends Controller
             return back()->with('fail', 'Something Wrong!!');
         }
     }
-    
-    
-
-    // Student List Route
-    public function studentlist($id)
-    {
-        $admin = Admin::where('id',$id)->first();
-        $students = Student::all();
-        $data = compact('admin','students');
-        return view('dashboard.student-list')->with($data);
-    }
-
-    
-    // Teacher List Route
-    public function teacherlist($id)
-    {
-        $admin = Admin::where('id',$id)->first();
-        $teachers = Teacher::all();
-        $data = compact('admin','teachers');
-        return view('dashboard.teacher-list')->with($data);
-    }
-
 }
